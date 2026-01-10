@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Better StudyGo",
+  "version": "1.0",
+
+  "description": "Enhances StudyGo with additional features and improvements.",
+
+  "icons": {
+    "48": "icons/betterstudygo-48.png",
+    "96": "icons/betterstudygo-96.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.studygo.com/*"],
+      "js": ["betterstudygo.js"]
+    }
+  ]
+}
