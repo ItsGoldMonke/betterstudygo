@@ -4,12 +4,24 @@
   "version": "1.0",
 
   "description": "Enhances StudyGo with additional features and improvements.",
+  "homepage_url": "https://github.com/ItsGoldMonke/betterstudygo",
 
   "icons": {
     "48": "icons/betterstudygo-48.png",
     "96": "icons/betterstudygo-96.png"
   },
 
+  "permissions": [
+    "activeTab"
+  ],
+  
+  "action": {
+    "default_icon": "icons/betterstudygo-48.png",
+    "default_title": "Better StudyGo",
+    "default_popup": "popup/popup.html"
+  },
+  
+  
   "content_scripts": [
     {
       "matches": ["*://*.studygo.com/*"],
