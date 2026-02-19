@@ -60,7 +60,7 @@ function getElementByXPath(path) {
 }
 
 
-console.log( getElementByXPath("//html/body/div/main/div/div/div[2]") );
+// console.log( getElementByXPath("//html/body/div/main/div/div/div[2]") );
 // returns the element at the specified XPath (<div class="bottom-bar">)
 
 // store the previous class name to prevent the sound from happening the entire time
@@ -87,7 +87,7 @@ function checkClassNameAndPlaySound() {
             }
             var audio = new Audio(settings.wrongSoundUrl);
             audio.play();
-            console.log("Played error sound");
+//          console.log("Played error sound");
     }
         else if (currentClassName === "bottom-bar success") {
             if (!settings.rightSoundUrl) {
@@ -96,7 +96,7 @@ function checkClassNameAndPlaySound() {
             }
             var audio = new Audio(settings.rightSoundUrl);
             audio.play();
-            console.log("Played success sound");
+//          console.log("Played success sound");
     }
     previousClassName = currentClassName;
     }
@@ -109,7 +109,7 @@ function checkIfEnabled() {
         if (!isEnabled(items.extensionEnabled)) {
             console.log("Extension not enabled")
             clearInterval(checkInterval);
-            console.log("Stopped checking for class name changes");
+//          console.log("Stopped checking for class name changes");
         }
         else {
             console.log("Ext is on")
