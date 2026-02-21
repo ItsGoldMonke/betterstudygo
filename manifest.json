@@ -21,7 +21,15 @@
     "default_title": "Better StudyGo",
     "default_popup": "popup/popup.html"
   },
-  
+  "browser_specific_settings": {
+  "gecko": {
+    "id": "betterstudygo@goldmonke.me",
+    "strict_min_version": "109.0",
+    "data_collection_permissions": {
+      "required": ["none"]
+    }
+  }
+},  
   
   "content_scripts": [
     {
