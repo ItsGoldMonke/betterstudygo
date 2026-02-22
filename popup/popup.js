@@ -41,6 +41,10 @@ function updateToggleButtonText(isEnabled) {
     }
 }
 
+function isEnabled(value) {
+    return value !== false && value !== "false";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const toggleExtensionBtn = document.getElementById("toggle-extension-btn");
     const rightSoundInput = document.getElementById("rightsoundurl");
@@ -48,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load and display current state
     getStorage("extensionEnabled").then((items) => {
-        updateToggleButtonText(items.extensionEnabled);
+        updateToggleButtonText(isEnabled(items.extensionEnabled));
     });
 
     if (toggleExtensionBtn) {

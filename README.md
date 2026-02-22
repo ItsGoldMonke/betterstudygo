@@ -1,5 +1,14 @@
 A firefox extension that adds functionality to [studygo](https://studygo.com), such as sounds when you have an answer right / wrong.
 
+# Features:
+As of right now, these features are implemented:
+- A popup-menu to edit your preferences for this extension.
+  - In here you can for example toggle whether the extension is enabled and set custom sounds.
+- Playing sounds when you answer questions
+  - Because by default, studygo is very quiet this extension adds custom sounds to studygo when you answer your question either right or wrong.
+  - There are sounds applied by default but you can set a custom sound (.mp4, other formats might work as well) from the popup using a link.
+- More features wil be added later
+
 # Instruction for using .crx:
 For some chromium based browsers you can just drop the .crx into it (open it with the browser), but for others like google chrome because of security measures that is not possible.
 
