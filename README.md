@@ -1,10 +1,11 @@
 A firefox extension that adds functionality to [studygo](https://studygo.com), such as sounds when you have an answer right / wrong.
 
 # Instruction for using .crx:
-In order to install the .crx on chrome, you'll need to change the file extension to .zip and extract it. Then in chrome go to about:extensions and turn on "developer mode". Then a button "load unpacked" should appear, which you have to press and then navigate to the extracted folder and select that. Now the extension should be installed.
+For some chromium based browsers you can just drop the .crx into it (open it with the browser), but for others like google chrome because of security measures that is not possible.
 
-If that does not work you might have to download the zip file of this repository manually and extract that, and then do the load unpacked.
+So, in order to install the extension on google chrome you'll need to download the source code instead, and then extract the .zip file. Then you need to go to about:extensions and turn on "developer mode", which will make new buttons appear. Then press "load unpacked" and navigate to the extracted folder, and then the folder inside if it exists. Select the folder with the manifest.json file inside it. Now the extension should load.
 
+For firefox users: once reviewed, the firefox extension will be available [here](https://addons.mozilla.org/nl/firefox/addon/better-studygo/).
 
 # How to use:
 In order to use this extension you should login/create an account on https://studygo.com and start a word list. Make sure you have the extension enabled from the popup and a sound selected (one should be added by default). Now you're using the extension!
