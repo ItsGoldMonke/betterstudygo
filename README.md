@@ -6,8 +6,11 @@ As of right now, these features are implemented:
   - In here you can for example toggle whether the extension is enabled and set custom sounds.
 - Playing sounds when you answer questions
   - Because by default, studygo is very quiet this extension adds custom sounds to studygo when you answer your question either right or wrong.
-  - There are sounds applied by default but you can set a custom sound (.mp4, other formats might work as well) from the popup using a link.
+  - There are sounds applied by default but you can set a custom sound (.mp3, other formats might work as well) from the popup using a link.
 - More features wil be added later
+
+> [!IMPORTANT]
+> Please make sure you are using a sound url that ends with a __valid__ sound extension (e.g. .mp3), otherwise your custom sounds will NOT work.
 
 # Instruction for using .crx:
 For some chromium based browsers you can just drop the .crx into it (open it with the browser), but for others like google chrome because of security measures that is not possible.
