@@ -1,9 +1,7 @@
 
-
-
-
 const ext = (typeof browser !== "undefined") ? browser : chrome;
 const storageArea = ext.storage.local;
+let observer = null;
 
 const DEFAULTS = {
     extensionEnabled: true,
@@ -52,51 +50,43 @@ if (ext.storage && ext.storage.onChanged) {
     });
 }
 
-
-
 // /html/body/div/main/div/div/div[2] = the element to check
 function getElementByXPath(path) {
     return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 }
-
-
-// console.log( getElementByXPath("//html/body/div/main/div/div/div[2]") );
-// returns the element at the specified XPath (<div class="bottom-bar">)
-
 // store the previous class name to prevent the sound from happening the entire time
 var previousClassName = null;
 var checkInterval = null;
 var didNotDo = true;
 
-
-
 // Play sound if class name matches "bottom-bar error"
 function checkClassNameAndPlaySound() {
 
-    
-    
     var element = getElementByXPath("//html/body/div/main/div/div/div[2]"); // and .correct  (css selector)
     var currentClassName = element ? element.className : null;
     
-    
-    
-    if (document.querySelector(".correct") && !document.querySelector(".incorrect") && didNotDo == true) {
+    const correct = document.querySelector(".correct");
+    const incorrect = document.querySelector(".incorrect");
+
+
+    if (correct && !incorrect && didNotDo) {
         //console.log("Found .correct element, playing success sound");
         var audio = new Audio(settings.rightSoundUrl);
         audio.play();
         didNotDo = false;
     }
     
-    if (document.querySelector(".incorrect") && didNotDo == true) {
+    if (incorrect && didNotDo) {
         //console.log("Found .incorrect element, playing failure sound");
         var audio = new Audio(settings.wrongSoundUrl);
         audio.play();
         didNotDo = false;
     }
     
-    if (!document.querySelector(".correct") && !document.querySelector(".incorrect") && didNotDo == false) {
+    if (!correct && !incorrect && didNotDo == false) {
         didNotDo = true;
     }
+
 
 
     if (currentClassName !== previousClassName) {
@@ -123,17 +113,40 @@ function checkClassNameAndPlaySound() {
 
 }
 
+function startObserver() {
+    if (observer) return;
+    observer = new MutationObserver(() => {
+        checkClassNameAndPlaySound();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true});
+    console.log("observing");
+}
+
+function stopObserver() {
+    if (!observer) return;
+    observer.disconnect();
+    observer = null;
+    console.log("not observing");
+}
+
+
+
+
 // Get if extension is enabled from storage and log it
 function checkIfEnabled() {
     getStorage("extensionEnabled").then((items) => {
         if (!isEnabled(items.extensionEnabled)) {
+            
             console.log("Extension not enabled")
-            clearInterval(checkInterval);
+            stopObserver();
 //          console.log("Stopped checking for class name changes");
         }
         else {
             console.log("Ext is on")
-            checkInterval = setInterval(checkClassNameAndPlaySound, 10);
+            startObserver();
+
+            //checkInterval = setInterval(checkClassNameAndPlaySound, 10);
 /*             document.addEventListener('keydown', function(event) {
                 pressedKey = event.key;
                 // If the pressed key is Enter (key code 13), check the class name and play sound
