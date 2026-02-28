@@ -66,7 +66,7 @@ function getElementByXPath(path) {
 // store the previous class name to prevent the sound from happening the entire time
 var previousClassName = null;
 var checkInterval = null;
-
+var didNotDo = true;
 
 
 
@@ -75,8 +75,28 @@ function checkClassNameAndPlaySound() {
 
     
     
-    var element = getElementByXPath("//html/body/div/main/div/div/div[2]");
+    var element = getElementByXPath("//html/body/div/main/div/div/div[2]"); // and .correct  (css selector)
     var currentClassName = element ? element.className : null;
+    
+    
+    
+    if (document.querySelector(".correct") && !document.querySelector(".incorrect") && didNotDo == true) {
+        //console.log("Found .correct element, playing success sound");
+        var audio = new Audio(settings.rightSoundUrl);
+        audio.play();
+        didNotDo = false;
+    }
+    
+    if (document.querySelector(".incorrect") && didNotDo == true) {
+        //console.log("Found .incorrect element, playing failure sound");
+        var audio = new Audio(settings.wrongSoundUrl);
+        audio.play();
+        didNotDo = false;
+    }
+    
+    if (!document.querySelector(".correct") && !document.querySelector(".incorrect") && didNotDo == false) {
+        didNotDo = true;
+    }
 
 
     if (currentClassName !== previousClassName) {
